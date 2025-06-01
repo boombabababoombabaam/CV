@@ -1,7 +1,7 @@
 # 👨‍💻 Adam Kučera - CV
 
 ## 🌟 Live Website
-**[View My CV →](https://boombabababoombabaam.github.io/cv)**
+**[View My CV →]([https://boombabababoombabaam.github.io/cv](http://adamkucera.dev/))**
 
 *Modern, interactive CV built with HTML, CSS, and JavaScript*
 
@@ -60,4 +60,4 @@ Currently seeking **internship opportunities** in:
 
 *Built with ❤️ and lots of ☕ by Adam Kučera*
 
-**[📄 View Live CV](https://boombabababoombabaam.github.io/cv)** | **⭐ Star this repo if you like it!**
+**[📄 View Live CV]([https://boombabababoombabaam.github.io/cv](http://adamkucera.dev/))** | **⭐ Star this repo if you like it!**
