@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adam Kučera - CV</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: #333;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .cv-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border-radius: 24px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            animation: slideUp 0.8s ease-out;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .header {
+            background: linear-gradient(135deg, #2563eb, #7c3aed);
+            color: white;
+            padding: 40px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            animation: rotate 20s linear infinite;
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .header-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .name {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 10px;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+        }
+
+        .title {
+            font-size: 1.3rem;
+            opacity: 0.9;
+            margin-bottom: 20px;
+        }
+
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+            margin-top: 20px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(255,255,255,0.2);
+            padding: 8px 16px;
+            border-radius: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .contact-item:hover {
+            background: rgba(255,255,255,0.3);
+            transform: translateY(-2px);
+        }
+
+        .content {
+            padding: 40px;
+        }
+
+        .section {
+            margin-bottom: 40px;
+            animation: fadeIn 0.6s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .section-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: #2563eb;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .section-title::before {
+            content: '';
+            width: 4px;
+            height: 30px;
+            background: linear-gradient(135deg, #2563eb, #7c3aed);
+            border-radius: 2px;
+        }
+
+        .profile-text {
+            font-size: 1.1rem;
+            color: #555;
+            background: linear-gradient(135deg, #f8fafc, #e2e8f0);
+            padding: 25px;
+            border-radius: 16px;
+            border-left: 4px solid #2563eb;
+        }
+
+        .education-item, .project-item {
+            background: #fff;
+            border-radius: 16px;
+            padding: 25px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+            border: 1px solid #e2e8f0;
+        }
+
+        .education-item:hover, .project-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+        }
+
+        .project-item {
+            background: linear-gradient(135deg, #fff, #f8fafc);
+        }
+
+        .project-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: #2563eb;
+            margin-bottom: 8px;
+        }
+
+        .project-date {
+            color: #7c3aed;
+            font-weight: 500;
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+        }
+
+        .project-description {
+            color: #555;
+            margin-bottom: 15px;
+        }
+
+        .tech-tags {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .tech-tag {
+            background: linear-gradient(135deg, #2563eb, #7c3aed);
+            color: white;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+        }
+
+        .skill-category {
+            background: #fff;
+            padding: 25px;
+            border-radius: 16px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+        }
+
+        .skill-category-title {
+            font-weight: 600;
+            color: #2563eb;
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+        }
+
+        .skill-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+            padding: 8px 0;
+        }
+
+        .achievements {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .achievement {
+            background: linear-gradient(135deg, #10b981, #059669);
+            color: white;
+            padding: 20px;
+            border-radius: 16px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .achievement:hover {
+            transform: scale(1.05);
+        }
+
+        .achievement-title {
+            font-weight: 700;
+            font-size: 1.1rem;
+            margin-bottom: 8px;
+        }
+
+        .achievement-desc {
+            opacity: 0.9;
+            font-size: 0.9rem;
+        }
+
+        .goals {
+            background: linear-gradient(135deg, #f59e0b, #d97706);
+            color: white;
+            padding: 30px;
+            border-radius: 16px;
+            text-align: center;
+        }
+
+        .goals h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+        }
+
+        @media (max-width: 768px) {
+            .name {
+                font-size: 2.5rem;
+            }
+            
+            .contact-info {
+                gap: 15px;
+            }
+            
+            .content {
+                padding: 20px;
+            }
+            
+            .skills-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .floating-elements {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .floating-element {
+            position: absolute;
+            background: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .floating-element:nth-child(1) {
+            width: 80px;
+            height: 80px;
+            top: 20%;
+            left: 10%;
+            animation-delay: 0s;
+        }
+
+        .floating-element:nth-child(2) {
+            width: 60px;
+            height: 60px;
+            top: 60%;
+            right: 15%;
+            animation-delay: 2s;
+        }
+
+        .floating-element:nth-child(3) {
+            width: 100px;
+            height: 100px;
+            bottom: 20%;
+            left: 20%;
+            animation-delay: 4s;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(180deg); }
+        }
+    </style>
+</head>
+<body>
+    <div class="floating-elements">
+        <div class="floating-element"></div>
+        <div class="floating-element"></div>
+        <div class="floating-element"></div>
+    </div>
+
+    <div class="container">
+        <div class="cv-card">
+            <div class="header">
+                <div class="header-content">
+                    <h1 class="name">Adam Kučera</h1>
+                    <p class="title">Junior AI Developer | Gymnázium Dačice</p>
+                    <div class="contact-info">
+                        <div class="contact-item">
+                            <span>📍</span>
+                            <span>Dačice, ČR</span>
+                        </div>
+                        <div class="contact-item">
+                            <span>📧</span>
+                            <span>vkucer@gymn-dacice.cz</span>
+                        </div>
+                        <div class="contact-item">
+                            <span>💻</span>
+                            <span>GitHub</span>
+                        </div>
+                        <div class="contact-item">
+                            <span>🔗</span>
+                            <span>LinkedIn</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="content">
+                <div class="section">
+                    <h2 class="section-title">🎯 Profesní profil</h2>
+                    <div class="profile-text">
+                        17letý student gymnázia s vášní pro umělou inteligenci a strojové učení. Mám několikaleté zkušenosti s programováním v Pythonu a praktickou aplikací AI v průmyslových i medicínských projektech. Specializuji se na vývoj predikčních modelů a mobilních aplikací s integrací strojového učení.
+                    </div>
+                </div>
+
+                <div class="section">
+                    <h2 class="section-title">🎓 Vzdělání</h2>
+                    <div class="education-item">
+                        <h3 style="font-size: 1.3rem; color: #2563eb; margin-bottom: 8px;">Gymnázium Dačice</h3>
+                        <p style="color: #7c3aed; font-weight: 500; margin-bottom: 15px;">2023 – dosud</p>
+                        <ul style="color: #555; margin-left: 20px;">
+                            <li>Zaměření na matematiku, informatiku a programování</li>
+                            <li>Účast v soutěžích z kybernetické bezpečnosti</li>
+                            <li><strong>Haxagon 2024:</strong> 9. místo v kraji</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="section">
+                    <h2 class="section-title">💻 Klíčové projekty</h2>
+
+                    <div class="project-item">
+                        <h3 class="project-title">Predikční model pro indukční zařízení</h3>
+                        <p class="project-date">2024</p>
+                        <p class="project-description">Vývoj AI modelu pro predikci teplot v průmyslovém prostředí. Praktická aplikace strojového učení v průmyslu.</p>
+                        <div class="tech-tags">
+                            <span class="tech-tag">Python</span>
+                            <span class="tech-tag">NumPy</span>
+                            <span class="tech-tag">Scikit-learn</span>
+                            <span class="tech-tag">pandas</span>
+                        </div>
+                    </div>
+
+                    <div class="project-item">
+                        <h3 class="project-title">Medicínský predikční model</h3>
+                        <p class="project-date">2024</p>
+                        <p class="project-description">Adaptace metodologie z průmyslu pro zdravotnické účely. Práce s citlivými daty a důraz na interpretovatelnost výsledků.</p>
+                        <div class="tech-tags">
+                            <span class="tech-tag">Python</span>
+                            <span class="tech-tag">Machine Learning</span>
+                            <span class="tech-tag">Data Analysis</span>
+                        </div>
+                    </div>
+
+                    <div class="project-item">
+                        <h3 class="project-title">iOS aplikace pro správu návyků</h3>
+                        <p class="project-date">2025</p>
+                        <p class="project-description">Kompletní vývoj aplikace od návrhu po implementaci. Integrace AI pro inteligentní plánování s kompletní dokumentací.</p>
+                        <div class="tech-tags">
+                            <span class="tech-tag">Swift</span>
+                            <span class="tech-tag">SwiftUI</span>
+                            <span class="tech-tag">CoreML</span>
+                            <span class="tech-tag">CoreData</span>
+                            <span class="tech-tag">Git</span>
+                        </div>
+                    </div>
+
+                    <div class="project-item">
+                        <h3 class="project-title">Webové stránky pro raketovou soutěž</h3>
+                        <p class="project-date">2023</p>
+                        <p class="project-description">Návrh a implementace responzivního webu. Kolaborace v týmu s použitím verzovacích systémů.</p>
+                        <div class="tech-tags">
+                            <span class="tech-tag">React</span>
+                            <span class="tech-tag">TailwindCSS</span>
+                            <span class="tech-tag">JavaScript</span>
+                            <span class="tech-tag">Git</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="section">
+                    <h2 class="section-title">🛠️ Technické dovednosti</h2>
+                    <div class="skills-grid">
+                        <div class="skill-category">
+                            <h3 class="skill-category-title">Programovací jazyky</h3>
+                            <div class="skill-item">
+                                <span>Python</span>
+                                <span style="color: #10b981; font-weight: 600;">Pokročilý</span>
+                            </div>
+                            <div class="skill-item">
+                                <span>Swift</span>
+                                <span style="color: #f59e0b; font-weight: 600;">Střední</span>
+                            </div>
+                            <div class="skill-item">
+                                <span>JavaScript</span>
+                                <span style="color: #f59e0b; font-weight: 600;">Střední</span>
+                            </div>
+                            <div class="skill-item">
+                                <span>HTML/CSS</span>
+                                <span style="color: #10b981; font-weight: 600;">Pokročilý</span>
+                            </div>
+                        </div>
+
+                        <div class="skill-category">
+                            <h3 class="skill-category-title">Frameworky & Knihovny</h3>
+                            <div class="skill-item">
+                                <span>React, TailwindCSS</span>
+                            </div>
+                            <div class="skill-item">
+                                <span>SwiftUI, CoreML</span>
+                            </div>
+                            <div class="skill-item">
+                                <span>NumPy, pandas, Scikit-learn</span>
+                            </div>
+                        </div>
+
+                        <div class="skill-category">
+                            <h3 class="skill-category-title">Jazyky</h3>
+                            <div class="skill-item">
+                                <span>Čeština</span>
+                                <span style="color: #10b981; font-weight: 600;">Rodný</span>
+                            </div>
+                            <div class="skill-item">
+                                <span>Angličtina</span>
+                                <span style="color: #10b981; font-weight: 600;">C1</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="section">
+                    <h2 class="section-title">🏆 Úspěchy a certifikace</h2>
+                    <div class="achievements">
+                        <div class="achievement">
+                            <div class="achievement-title">Haxagon 2024</div>
+                            <div class="achievement-desc">9. místo v kraji v kybernetické bezpečnosti</div>
+                        </div>
+                        <div class="achievement">
+                            <div class="achievement-title">LeetCode Champion</div>
+                            <div class="achievement-desc">400+ vyřešených úloh, top 2% řešitelů</div>
+                        </div>
+                        <div class="achievement">
+                            <div class="achievement-title">Portfolio</div>
+                            <div class="achievement-desc">adamkucera.dev - Kompletní prezentace projektů</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="section">
+                    <h2 class="section-title">🎯 Kariérní cíle</h2>
+                    <div class="goals">
+                        <h3>Budoucí AI/ML Developer</h3>
+                        <p>Hledám příležitost k získání praktických zkušeností v oblasti umělé inteligence a strojového učení. Mým cílem je aplikovat teoretické znalosti v reálných projektech a přispět k inovativním řešením v AI/ML týmu.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
